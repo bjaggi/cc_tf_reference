@@ -5,7 +5,6 @@
 *.tfstate
 *.tfstate.*
 terraform.tfvars
-environment/dev/terraform.tfvars
 environment/qa/terraform.tfvars
 environment/prod/terraform.tfvars
 
