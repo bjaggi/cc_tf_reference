@@ -1,0 +1,5 @@
+{
+  "SR_CLSTR_REST_URL": "psrc-xxxxx.us-west-2.aws.confluent.cloud",
+  "SR_API_KEY": "xxxxxxx",
+  "SR_API_SECRET": "yyyyyyyyyyyyyyyy"
+}

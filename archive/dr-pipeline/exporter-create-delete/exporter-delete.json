@@ -1,0 +1,6 @@
+{
+  "SR_PIMARY_CLSTR_REST_URL": "pkc-xxxxx.us-west-2.aws.confluent.cloud",
+  "SR_PRIMARY_API_KEY": "xxxxxxxx",
+  "SR_PRIMARY_API_SECRET": "yyyyyyyyyyyyyy",
+  "exporter_name": "aws-sr-exporter-dr-pr"
+}

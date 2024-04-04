@@ -1,0 +1,8 @@
+{
+  "LINK_NAME": "DR--Test-reverse-link",
+  "DEST_CLSTR_ID": "lkc-xxxxx",
+  "DEST_CLSTR_REST_URL": "https://pkc-xxxxxx.us-west-2.aws.confluent.cloud",
+  "DEST_API_KEY": "xxxxxxxx",
+  "DEST_API_SECRET": "yyyyyyyyyyyyyyy",
+  "ACTION_TYPE": "failover"
+}

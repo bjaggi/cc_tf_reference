@@ -4,6 +4,27 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+terraform.tfvars
+environment/dev/terraform.tfvars
+environment/qa/terraform.tfvars
+environment/prod/terraform.tfvars
+
+environment/dev/terraform.tfstate
+environment/dev/.terraform/*
+environment/dev/terraform.tfstate.backup
+
+environment/qa/terraform.tfstate
+environment/qa/.terraform/*
+environment/qa/terraform.tfstate.backup
+
+environment/prod/terraform.tfstate
+environment/prod/.terraform/*
+environment/prod/terraform.tfstate.backup
+
+
+
+.DS_Store
+
 
 # Crash log files
 crash.log

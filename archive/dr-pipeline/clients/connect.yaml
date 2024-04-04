@@ -1,0 +1,32 @@
+apiVersion: platform.confluent.io/v1beta1
+kind: Connect
+metadata:
+  name: connect
+  namespace: confluent
+spec:
+  replicas: 1
+  image:
+    application: confluentinc/cp-server-connect:7.4.0
+    init: confluentinc/confluent-init-container:2.6.0
+  build:
+    type: onDemand
+    onDemand:
+      plugins:
+        locationType: confluentHub
+        confluentHub:
+          - name: kafka-connect-http
+            owner: confluentinc
+            version: 1.6.0
+          - name: kafka-connect-datagen
+            owner: confluentinc
+            version: 0.5.2
+  dependencies:
+    kafka:
+      bootstrapEndpoint: pkc-xxxxx.us-east-2.aws.confluent.cloud:9092
+      authentication:
+        type: plain
+        jaasConfig:
+          secretRef: cloud-plain
+      tls:
+        enabled: true
+        ignoreTrustStoreConfig: true

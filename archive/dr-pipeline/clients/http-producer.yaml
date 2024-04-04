@@ -1,0 +1,46 @@
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kafka-client-config
+  namespace: confluent
+type: Opaque
+stringData:
+  kafka.properties: |
+    bootstrap.servers=pkc-xxxxx.us-east-2.aws.confluent.cloud:9092
+    ssl.endpoint.identification.algorithm=https
+    security.protocol=SASL_SSL
+    sasl.mechanism=PLAIN
+    sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxxxx' password='yyyyyyyyyyyyyyy';
+    client.id=http-producer
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: producer-example
+  name: producer-example
+  namespace: confluent
+spec:
+  containers:
+  - image: confluentinc/cp-server:7.4.0
+    name: producer-example
+    command:
+    - /bin/sh
+    - -c
+    - |
+      for i in `seq 20000`; do echo '{"f1": "value'$i'"'};done  | kafka-console-producer \
+            --bootstrap-server pkc-xxxxx.us-east-2.aws.confluent.cloud:9092 \
+            --producer.config /mnt/kafka.properties \
+            --topic http-messages
+    volumeMounts:
+        - name: kafka-properties
+          mountPath: /mnt
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+  volumes:
+    - name: kafka-properties # Create secret with name `kafka-client-config` with client configurations
+      secret:
+        secretName: kafka-client-config

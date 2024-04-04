@@ -1,0 +1,19 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  namespace: dr-test-clients
+  name: java-cloud-consumer-noproxy-config
+  annotations:
+    reloader.stakater.com/match: "true"
+data:
+  config.properties: |-
+     bootstrap.servers=pkc-xxxxx.us-east-2.aws.confluent.cloud:9092
+     ssl.endpoint.identification.algorithm=https
+     security.protocol=SASL_SSL
+     sasl.mechanism=PLAIN
+     sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='xxxxxxxx' password='yyyyyyyyyyyyyyyyyyyyyy';
+     key.deserializer=org.apache.kafka.common.serialization.StringDeserializer
+     value.deserializer=org.apache.kafka.common.serialization.StringDeserializer
+     client.id=chuck-java-noproxy-consumer
+     group.id=chuck-java-noproxy-cg
+     topic=.*chuck-java-np-topic

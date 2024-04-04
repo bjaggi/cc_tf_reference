@@ -1,0 +1,14 @@
+{
+  "SR_PIMARY_CLSTR_REST_URL": "psrc-xxxxxx.us-west-2.aws.confluent.cloud",
+  "SR_PRIMARY_API_KEY": "zzzzzzzz",
+  "SR_PRIMARY_API_SECRET": "vvvvvvvvvvvvvvv",
+  "exporter_name": "aws-sr-exporter-pr-dr",
+  "subjects": [":*:"],
+  "contextType": "NONE",
+  "context": "",
+  "config": {
+    "schema.registry.url": "https://psrc-yyyyyy.us-east-1.aws.confluent.cloud",
+    "basic.auth.credentials.source": "USER_INFO",
+    "basic.auth.user.info": "xxxxxxx:yyyyyyyyyyyyyyyy"
+  }
+}

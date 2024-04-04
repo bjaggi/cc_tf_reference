@@ -1,0 +1,41 @@
+service_accounts = {
+  "sa1" = {
+    display_name = "service-account-1"
+    role_definitions = [
+      {
+        role_name   = "DeveloperRead"
+        crn_pattern = "kafka_resource_crn/topic=test1"
+      },
+      {
+        role_name   = "DeveloperRead"
+        crn_pattern = "kafka_resource_crn/group=test2"
+      }
+    ]
+  },
+  "sa2" = {
+    display_name = "service-account-2"
+    role_definitions = [
+      {
+        role_name   = "DeveloperWrite"
+        crn_pattern = "kafka_resource_crn/topic=test3"
+      },
+      {
+        role_name   = "ResourceOwner"
+        crn_pattern = "kafka_resource_crn/transactional-id=*"
+      }
+    ]
+  },
+  "sa3" = {
+    display_name = "service-account-3"
+    role_definitions = [
+      {
+        role_name   = "CloudClusterAdmin"
+        crn_pattern = "kafka_cluster_crn"
+      },
+      {
+        role_name   = "ResourceOwner"
+        crn_pattern = "sr_crn/subject=*"
+      }
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: dr-test-clients
+  name: namespace-reader
+rules:
+  - apiGroups: ["", "extensions", "apps"]
+    resources: ["configmaps", "pods", "services", "endpoints", "secrets"]
+    verbs: ["get", "list", "watch"]
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: namespace-reader-binding
+  namespace: dr-test-clients
+subjects:
+  - kind: ServiceAccount
+    name: default
+    apiGroup: ""
+roleRef:
+  kind: Role
+  name: namespace-reader
+  apiGroup: ""
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: java-cloud-consumer-noproxy
+  name: java-cloud-consumer-noproxy
+  namespace: dr-test-clients
+  annotations:
+    configmap.reloader.stakater.com/reload: "java-cloud-consumer-noproxy-config"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-cloud-consumer-noproxy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: java-cloud-consumer-noproxy
+    spec:
+      containers:
+      - name: java-cloud-consumer-noproxy
+        image: ogomezso/java-cloud-consumer:0.0.1
+        resources: {}
+        volumeMounts:
+        - name: app-config-volume
+          mountPath: /config
+      volumes:
+        - name: app-config-volume
+          configMap:
+            name: java-cloud-consumer-noproxy-config
